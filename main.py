@@ -1,16 +1,23 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from framework.wsgi import Framework
+from framework.url import Url
+from framework.view import View
+from framework.response import Response
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+class MyFirstView(View):
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    def get(self, request):
+        print('GET')
+        return Response(body='GET SUCCESS')
+
+    def post(self, request):
+        print('POST')
+        return Response(status='201 Created', body='POST SUCCESS', headers={'test': '123'})
+
+
+urls = [
+    Url('/', MyFirstView, 'framework/templates/index.html'),
+    Url('/about', MyFirstView, 'framework/templates/about.html')
+]
+
+app = Framework(urls)
