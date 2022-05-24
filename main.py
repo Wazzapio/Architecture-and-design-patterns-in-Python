@@ -1,15 +1,18 @@
 from framework.wsgi import Framework
 from framework.url import Url
 from framework.view import View
+from framework.response import Response
 
 
 class MyFirstView(View):
 
     def get(self, request):
-        return 'GET'
+        print('GET')
+        return Response(body='GET SUCCESS')
 
     def post(self, request):
-        return 'POST'
+        print('POST')
+        return Response(status='201 Created', body='POST SUCCESS', headers={'test': '123'})
 
 
 urls = [

@@ -1,6 +1,5 @@
 from jinja2 import Template
 
-
 def render(template_name, **kwargs):
     """
     :param template_name: имя шаблона
